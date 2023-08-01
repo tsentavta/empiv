@@ -11,8 +11,8 @@ function App() {
         <div className="App">
             <NavBar/>
             non
-            {/*<Route exact path={'/'} component={Main}/>*/}
-            {/*<Route exact path={'/SkinEffect'} component={SkinEffect}/>*/}
+            <Route exact path={'/'} component={Main}/>
+            <Route exact path={'/SkinEffect'} component={SkinEffect}/>
 
                 {/*<PublicRoutes/>*/}
                 <Footer/>
