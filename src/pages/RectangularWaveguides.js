@@ -24,7 +24,6 @@ export function RectangularWaveguides() {
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
                     <TextField
-                        defaultValue="Hello World"
                         label="Генератор (ГГц)"
                         type="number"
                         InputLabelProps={{

@@ -10,19 +10,25 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import {useContext} from "react";
+import {Context} from "../../index";
 
-const pages = [{href: 'SkinEffect', string: 'Скин-эффект'}, {href: 'RectangularWaveguides', string: 'Прямоугольный волновод'}, {href: '/', string: 'Главная'}];
+const pages = [{href: "SkinEffect", string: 'Скин-эффект'}, {href: "RectangularWaveguides", string: 'Прямоугольный волновод'}, {href: "Main", string: 'Главная'}];
 
 
-function ResponsiveAppBar() {
+function NavBar(props) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const LOGO = "PSUTI"
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    function handleCloseNavMenu(href)  {
+        if (href != null) {
+            props.setPathRouter(href)
+        }
         setAnchorElNav(null);
     };
 
@@ -73,14 +79,14 @@ function ResponsiveAppBar() {
                                 horizontal: 'left',
                             }}
                             open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
+                            onClose={() => handleCloseNavMenu(null)}
                             sx={{
                                 display: {xs: 'block', md: 'none'},
                             }}
                         >
                             {pages.map((page,i) => (
-                                <MenuItem key={i} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center" component="a" href={page.href} sx={{
+                                <MenuItem key={i} onClick={() => handleCloseNavMenu(page.href)}>
+                                    <Typography textAlign="center" sx={{
                                         fontFamily: 'monospace',
                                         textDecoration: 'none',
                                     }}>{page.string}</Typography>
@@ -111,8 +117,7 @@ function ResponsiveAppBar() {
                         {pages.map((page,i) => (
                             <Button
                                 key={i}
-                                onClick={handleCloseNavMenu}
-                                href={page.href}
+                                onClick={() => handleCloseNavMenu(page.href)}
                                 sx={{my: 2, color: 'white', display: 'block'}}
                             >
                                 {page.string}
@@ -127,4 +132,4 @@ function ResponsiveAppBar() {
     );
 }
 
-export default ResponsiveAppBar;
+export default NavBar;
