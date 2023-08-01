@@ -10,8 +10,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {useContext} from "react";
-import {Context} from "../../index";
+// import {useContext} from "react";
+// import {Context} from "../../index";
 
 const pages = [{href: "SkinEffect", string: 'Скин-эффект'}, {href: "RectangularWaveguides", string: 'Прямоугольный волновод'}, {href: "Main", string: 'Главная'}];
 

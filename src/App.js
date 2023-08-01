@@ -1,11 +1,11 @@
 import './App.css';
-import {PublicRoutes} from "./components/routes";
+// import {PublicRoutes} from "./components/routes";
 import {Footer} from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
 import {Main} from "./pages/Main";
-import {Route, Routes} from "react-router-dom";
+// import {Route, Routes} from "react-router-dom";
 import {SkinEffect} from "./pages/SkinEffect";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {RectangularWaveguides} from "./pages/RectangularWaveguides";
 
 function App() {
