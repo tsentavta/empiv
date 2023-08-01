@@ -10,8 +10,9 @@ function App() {
     return (
         <div className="App">
             <NavBar/>
-            <Route exact path={'/'} component={Main}/>
-            <Route exact path={'/SkinEffect'} component={SkinEffect}/>
+            non
+            {/*<Route exact path={'/'} component={Main}/>*/}
+            {/*<Route exact path={'/SkinEffect'} component={SkinEffect}/>*/}
 
                 {/*<PublicRoutes/>*/}
                 <Footer/>
