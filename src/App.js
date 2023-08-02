@@ -7,6 +7,8 @@ import {Main} from "./pages/Main";
 import {SkinEffect} from "./pages/SkinEffect";
 import {useEffect, useState} from "react";
 import {RectangularWaveguides} from "./pages/RectangularWaveguides";
+import VolumetricResonator from "./pages/VolumetricResonator";
+import FullResistances from "./pages/FullResistances";
 
 function App() {
     const [pathRouter, setPathRouter] = useState(localStorage.getItem('path') ? localStorage.getItem('path') : "Main")
@@ -25,6 +27,12 @@ function App() {
             }
             {
                 (pathRouter === 'RectangularWaveguides') ? <RectangularWaveguides/> : null
+            }
+            {
+                (pathRouter === 'VolumetricResonator') ? <VolumetricResonator/> : null
+            }
+            {
+                (pathRouter === 'FullResistances') ? <FullResistances/> : null
             }
             {/*<PublicRoutes/>*/}
             <Footer/>

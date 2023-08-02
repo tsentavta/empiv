@@ -13,7 +13,12 @@ import AdbIcon from '@mui/icons-material/Adb';
 // import {useContext} from "react";
 // import {Context} from "../../index";
 
-const pages = [{href: "SkinEffect", string: 'Скин-эффект'}, {href: "RectangularWaveguides", string: 'Прямоугольный волновод'}, {href: "Main", string: 'Главная'}];
+const pages = [
+    {href: "SkinEffect", string: 'Скин-эффект'},
+    {href: "RectangularWaveguides", string: 'Прямоугольный волновод'},
+    {href: "VolumetricResonator", string: 'Объемный Резонатор'},
+    {href: "FullResistances", string: 'Полные сопротивления'},
+    {href: "Main", string: 'Главная'}];
 
 
 function NavBar(props) {
