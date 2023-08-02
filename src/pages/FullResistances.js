@@ -3,6 +3,7 @@ import {FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Slider, Tex
 import clsx from "classnames";
 import classes from "./RectangularWaveguides.module.sass";
 import expImg from "../img/exponential_growth_520.jpg";
+import {Container} from "react-bootstrap";
 
 function FullResistances(props) {
 
@@ -15,7 +16,8 @@ function FullResistances(props) {
     }, [sliderValue])
 
     return (
-        <div>
+        <Container>
+            <h1>Измерение полных сопротивлений</h1>
             <FormControl>
                 <FormLabel id="demo-radio-buttons-group-label">Характер нагрузки</FormLabel>
                 <RadioGroup
@@ -54,7 +56,7 @@ function FullResistances(props) {
                     />
                 </div>
             </div>
-        </div>
+        </Container>
     );
 }
 
