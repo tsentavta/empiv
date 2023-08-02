@@ -1,25 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+// import {PublicRoutes} from "./components/routes";
+import {Footer} from "./components/Footer/Footer";
+import NavBar from "./components/NavBar/NavBar";
+import {Main} from "./pages/Main";
+// import {Route, Routes} from "react-router-dom";
+import {SkinEffect} from "./pages/SkinEffect";
+import {useEffect, useState} from "react";
+import {RectangularWaveguides} from "./pages/RectangularWaveguides";
+import VolumetricResonator from "./pages/VolumetricResonator";
+import FullResistances from "./pages/FullResistances";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [pathRouter, setPathRouter] = useState(localStorage.getItem('path') ? localStorage.getItem('path') : "Main")
+    useEffect(() => {
+        localStorage.setItem('path', pathRouter)
+    }, [pathRouter])
+
+    return (
+        <div className="App">
+            <NavBar setPathRouter={setPathRouter}/>
+            {
+                (pathRouter === 'Main') ? <Main/> : null
+            }
+            {
+                (pathRouter === 'SkinEffect') ? <SkinEffect/> : null
+            }
+            {
+                (pathRouter === 'RectangularWaveguides') ? <RectangularWaveguides/> : null
+            }
+            {
+                (pathRouter === 'VolumetricResonator') ? <VolumetricResonator/> : null
+            }
+            {
+                (pathRouter === 'FullResistances') ? <FullResistances/> : null
+            }
+            {/*<PublicRoutes/>*/}
+            <Footer/>
+
+
+        </div>
+    );
 }
 
 export default App;
