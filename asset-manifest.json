@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/empiv/static/css/main.57d68c18.css",
-    "main.js": "/empiv/static/js/main.ca92c7c9.js",
+    "main.css": "/empiv/static/css/main.64d209d6.css",
+    "main.js": "/empiv/static/js/main.ca0099b6.js",
+    "static/media/logo.ico": "/empiv/static/media/logo.013e17eccd349a0fa936.ico",
     "static/media/exponential_growth_520.jpg": "/empiv/static/media/exponential_growth_520.319714a1cec7e65b9021.jpg",
     "index.html": "/empiv/index.html",
-    "main.57d68c18.css.map": "/empiv/static/css/main.57d68c18.css.map",
-    "main.ca92c7c9.js.map": "/empiv/static/js/main.ca92c7c9.js.map"
+    "main.64d209d6.css.map": "/empiv/static/css/main.64d209d6.css.map",
+    "main.ca0099b6.js.map": "/empiv/static/js/main.ca0099b6.js.map"
   },
   "entrypoints": [
-    "static/css/main.57d68c18.css",
-    "static/js/main.ca92c7c9.js"
+    "static/css/main.64d209d6.css",
+    "static/js/main.ca0099b6.js"
   ]
 }
