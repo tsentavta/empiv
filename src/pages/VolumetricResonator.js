@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import classes from "./RectangularWaveguides.module.sass";
+import classes from "./VolumetricResonator.module.sass";
 import {Container} from "react-bootstrap";
 import clsx from "classnames";
 import expImg from "../img/exponential_growth_520.jpg";
@@ -30,25 +30,28 @@ function VolumetricResonator(props) {
         setTranslateX(sliderValue * 3);
     }, [sliderValue])
     return (
-        <Container className={classes.container}>
+        <>
             <h1>Исследование вынужденных колебаний в объемном резонаторе</h1>
-            <div className={classes.flexContainerItem}>
-                <TextField
-                    label="Генератор (ГГц)"
-                    type="number"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
+            <div className={classes.flexContainer}>
+                <div className={classes.flexContainerItem}>
+                    <TextField
+                        label="Генератор (ГГц)"
+                        type="number"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </div>
+                <div className={classes.flexContainerItem}>
+                    <TextField
+                        label="Ампереметр"
+                        defaultValue="1 А"
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
             </div>
-            <div className={classes.flexContainerItem}>
-            <TextField
-                label="Ампереметр"
-                defaultValue="1 А"
-                InputProps={{
-                    readOnly: true,
-                }}
-            />
+
         </div>
             <h2>Исследуемая установка:</h2>
             <div className={clsx(classes.flexContainerItem, classes.flexItemSlider)}>
@@ -68,7 +71,7 @@ function VolumetricResonator(props) {
                     />
                 </div>
             </div>
-        </Container>
+        </>
     );
 }
 

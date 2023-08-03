@@ -19,7 +19,7 @@ export function RectangularWaveguides() {
 
 
     return (
-        <Container className={classes.container}>
+        <>
             <h1>Исследование собственных волн прямоугольного волновода</h1>
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
@@ -44,7 +44,7 @@ export function RectangularWaveguides() {
                 </div>
             </div>
             <h2>Исследуемая установка:</h2>
-            <div className={clsx(classes.flexContainerItem, classes.flexItemSlider)}>
+            <div className={clsx(classes.flexContainer, classes.flexItemSlider)}>
 
                 <div className={classes.imgBox}>
                     <img src={expImg} alt={'img'}/>
@@ -63,7 +63,7 @@ export function RectangularWaveguides() {
                 </div>
             </div>
 
-        </Container>
+        </>
 
     );
 }

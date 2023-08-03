@@ -10,8 +10,9 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-// import {useContext} from "react";
-// import {Context} from "../../index";
+import {Avatar} from "@mui/material";
+import logo from "../../img/logo.ico"
+import classes from "./NavBar.module.sass";
 
 const pages = [
     {href: "SkinEffect", string: 'Скин-эффект'},
@@ -21,33 +22,45 @@ const pages = [
     {href: "Main", string: 'Главная'}];
 
 
-function NavBar(props) {
+function NavBar({setPathRouter}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const LOGO = "PSUTI"
+
+    NavBar.propTypes = {
+        setPathRouter: setPathRouter.func,
+    };
 
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
 
-    function handleCloseNavMenu(href)  {
+    function handleCloseNavMenu(href) {
         if (href != null) {
-            props.setPathRouter(href)
+            setPathRouter(href)
         }
         setAnchorElNav(null);
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBarBackground}>
             <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}/>
+                <Toolbar disableGutters
+                         sx={{
+
+                         }}
+                >
+                    <IconButton sx={{ display: {xs: 'none', md: 'flex'}, p: 0, margin: '10px'}}>
+                        <Avatar alt="Remy Sharp" src={logo} />
+                    </IconButton>
+
                     <Typography
                         variant="h6"
                         noWrap
                         component="a"
                         href="/"
                         sx={{
+                            flexGrow: 1,
                             mr: 2,
                             display: {xs: 'none', md: 'flex'},
                             fontFamily: 'monospace',
@@ -76,22 +89,24 @@ function NavBar(props) {
                             anchorEl={anchorElNav}
                             anchorOrigin={{
                                 vertical: 'bottom',
-                                horizontal: 'left',
+                                horizontal: 'right',
                             }}
                             keepMounted
                             transformOrigin={{
                                 vertical: 'top',
-                                horizontal: 'left',
+                                horizontal: 'right',
                             }}
                             open={Boolean(anchorElNav)}
                             onClose={() => handleCloseNavMenu(null)}
                             sx={{
                                 display: {xs: 'block', md: 'none'},
+
                             }}
                         >
-                            {pages.map((page,i) => (
+                            {pages.map((page, i) => (
                                 <MenuItem key={i} onClick={() => handleCloseNavMenu(page.href)}>
                                     <Typography textAlign="center" sx={{
+
                                         fontFamily: 'monospace',
                                         textDecoration: 'none',
                                     }}>{page.string}</Typography>
@@ -119,7 +134,7 @@ function NavBar(props) {
                         {LOGO}
                     </Typography>
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
-                        {pages.map((page,i) => (
+                        {pages.map((page, i) => (
                             <Button
                                 key={i}
                                 onClick={() => handleCloseNavMenu(page.href)}

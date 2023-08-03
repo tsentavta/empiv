@@ -23,8 +23,7 @@ export function SkinEffect() {
 
 
     return (
-        <div className="App">
-            <Container>
+            <>
                 <h1>Исследование скин-эффекта</h1>
 
                 <div className={classes.flexContainer}>
@@ -49,7 +48,9 @@ export function SkinEffect() {
                         </FormControl>
                     </div>
 
+                    {
 
+                    }
                 </div>
 
                 <h2>Исследуемая установка:</h2>
@@ -96,8 +97,7 @@ export function SkinEffect() {
                         />
                     </div>
                 </div>
-            </Container>
-        </div>
+            </>
     );
 }
 
