@@ -1,6 +1,9 @@
 .App {
   color: #0c426f;
   text-align: center;
+  background-attachment: fixed;
+  background-image: url("./img/backgroundhtml2.png");
+  background-size: 10%;
 }
 
 .App-logo {
@@ -8,6 +11,8 @@
   pointer-events: none;
 }
 .container {
+  background-color: white;
+  padding: 2em;
   margin-right: auto;
   margin-left: auto;
   max-width: 800px;

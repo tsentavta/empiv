@@ -1,10 +1,7 @@
-
-// import {PublicRoutes} from "./components/routes";
 import { useEffect, useState } from 'react';
 import { Footer } from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import { Main } from './pages/Main';
-// import {Route, Routes} from "react-router-dom";
 import { SkinEffect } from './pages/SkinEffect';
 import { RectangularWaveguides } from './pages/RectangularWaveguides';
 import VolumetricResonator from './pages/VolumetricResonator';

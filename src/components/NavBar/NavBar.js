@@ -44,7 +44,7 @@ function NavBar({setPathRouter}) {
 
     return (
         <AppBar position="static" className={classes.appBarBackground}>
-            <Container maxWidth="xl">
+            <Container maxWidth="xl" className={classes.container}>
                 <Toolbar disableGutters
                          sx={{
 
