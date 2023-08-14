@@ -1,103 +1,141 @@
 import {FormControl, InputLabel, MenuItem, Select, Slider, TextField} from "@mui/material";
 import classes from "./SkinEffect.module.sass";
-import expImg from "../img/exponential_growth_520.jpg"
-import {useEffect, useState} from "react";
-import {Container} from "react-bootstrap";
+import expImg from "../img/imgSkin.png"
 import * as React from "react";
+import {useEffect, useState} from "react";
+import {materialConsts} from "../components/consts";
+
+
+function electricFieldStrength(z_position, electric_field_strength, frequency, relative_magnetic_permeability, electrical_conductance) {
+    const rmp = relative_magnetic_permeability
+    const mp = 4 * Math.PI//* 10^(-7) ->
+    const ec = electrical_conductance
+    const f = frequency
+    const efs = electric_field_strength
+    const z = z_position
+
+    const y = (Math.sqrt((10^(7)) / (Math.PI * f * mp * rmp * ec)))*z
+
+    let ans =  Math.exp(-y)
+    return efs * ans
+}
+
 
 
 export function SkinEffect() {
     const [translateX, setTranslateX] = useState(0) // смещение зонда
     const [empValue, setEmpValue] = useState(0) // вывод значения ЭМП
     const [sliderValue, setSliderValue] = useState(0) //для значения slider
-    const [material, setMaterial] = useState('1') // выбор материала
+    const [material, setMaterial] = useState(1) // выбор материала
     const [constForMaterial, setConstForMaterial] = useState(1) // коэффициент материала
     const [probeDisplacement, setProbeDisplacement] = useState(0.1) // вывод значения смещение зонда в мм
 
     useEffect(() => {
         setTranslateX(sliderValue * 3);
-        setEmpValue(sliderValue * constForMaterial)
-        setProbeDisplacement(sliderValue/10)
+        // setEmpValue(sliderValue * constForMaterial)
+        let position
 
+        if (material !== 4 ) {
+            position = sliderValue / 10 /1000
+            setProbeDisplacement(sliderValue / 10)
+        } else {
+            position = sliderValue * 3 / 100 /1000
+            setProbeDisplacement(sliderValue * 3 / 100)
+        }
+
+        switch (material) {
+            case 1:
+                setEmpValue(electricFieldStrength(position, 1, 1000, materialConsts.copper.relative_magnetic_permeability, materialConsts.copper.electrical_conductance))
+                break
+            case 2:
+                setEmpValue(electricFieldStrength(position, 1, 1000, materialConsts.tin.relative_magnetic_permeability, materialConsts.tin.electrical_conductance))
+                break
+            case 3:
+                setEmpValue(electricFieldStrength(position, 1, 1000, materialConsts.brass.relative_magnetic_permeability, materialConsts.brass.electrical_conductance))
+                break
+            case 4:
+                setEmpValue(electricFieldStrength(position, 1, 1000, materialConsts.steel.relative_magnetic_permeability, materialConsts.steel.electrical_conductance))
+                break
+        }
     }, [sliderValue, material])
 
-
     return (
-            <>
-                <h1>Исследование скин-эффекта</h1>
+        <>
+            <h1>Исследование скин-эффекта</h1>
 
-                <div className={classes.flexContainer}>
-                    <div className={classes.flexContainerItem}>
-                        <FormControl fullWidth className={classes.flexContainerItem}>
-                            <InputLabel id="demo-simple-select-label">Материал</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={material}
-                                label="Материал"
-                                onChange={(e) => {
-                                    setMaterial(e.target.value)
-                                    setConstForMaterial(Number(e.target.value))
-                                }}
-                            >
-                                <MenuItem value={1}>Медь</MenuItem>
-                                <MenuItem value={2}>Олово</MenuItem>
-                                <MenuItem value={3}>Латунь</MenuItem>
-                                <MenuItem value={4}>Сталь</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </div>
-
-                    {
-
-                    }
-                </div>
-
-                <h2>Исследуемая установка:</h2>
-                <div className={classes.boxContainer}>
-
-                    <div className={classes.imgBox}>
-                        <img src={expImg} alt={'img'}/>
-                        {/*<div className={classes.image}/>*/}
-                        <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX}px`}}></div>
-                    </div>
-
-                    <div className={classes.sliderBox}>
-                        <Slider
-                            value={sliderValue}
+            <div className={classes.flexContainer}>
+                <div className={classes.flexContainerItem}>
+                    <FormControl fullWidth className={classes.flexContainerItem}>
+                        <InputLabel id="demo-simple-select-label">Материал</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={material}
+                            label="Материал"
                             onChange={(e) => {
-                                setSliderValue(e.target.value)
+                                setMaterial(e.target.value)
+                                // setConstForMaterial(Number(e.target.value))
                             }}
-                            min={0}
-                            max={100}
-                        />
-                    </div>
+                        >
+                            <MenuItem value={1}>Медь</MenuItem>
+                            <MenuItem value={2}>Олово</MenuItem>
+                            <MenuItem value={3}>Латунь</MenuItem>
+                            <MenuItem value={4}>Сталь</MenuItem>
+                        </Select>
+                    </FormControl>
                 </div>
 
-                <div className={classes.flexContainer}>
+                {
 
+                }
+            </div>
 
-                    <div className={classes.flexContainerItem}>
-                        <TextField
-                            label="E"
-                            value={empValue + ' мВ/м'}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                        />
-                    </div>
+            <h2>Исследуемая установка:</h2>
+            <div className={classes.boxContainer}>
 
-                    <div className={classes.flexContainerItem}>
-                        <TextField
-                            label="Координата зонда"
-                            value={probeDisplacement + " мм"}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                        />
-                    </div>
+                <div className={classes.imgBox}>
+                    {/*<div className={clsx({backgroundColor: '#b87333'}, classes.img)}/>*/}
+                    <img src={expImg} alt={'img'} className={classes.img}/>
+                    {/*<div className={classes.image}/>*/}
+                    <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX/2}px`}}></div>
                 </div>
-            </>
+
+                <div className={classes.sliderBox}>
+                    <Slider
+                        value={sliderValue}
+                        onChange={(e) => {
+                            setSliderValue(e.target.value)
+                        }}
+                        min={0}
+                        max={100}
+                    />
+                </div>
+            </div>
+
+            <div className={classes.flexContainer}>
+
+
+                <div className={classes.flexContainerItem}>
+                    <TextField
+                        label="E"
+                        value={empValue + ' мВ/м'}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                </div>
+
+                <div className={classes.flexContainerItem}>
+                    <TextField
+                        label="Координата зонда"
+                        value={probeDisplacement + " мм"}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                    />
+                </div>
+            </div>
+        </>
     );
 }
 
