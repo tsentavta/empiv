@@ -13,6 +13,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import {Avatar} from "@mui/material";
 import logo from "../../img/logo.ico"
 import classes from "./NavBar.module.sass";
+import * as setPathRouter from "prop-types";
 
 const pages = [
     {href: "SkinEffect", string: 'Скин-эффект'},
@@ -22,13 +23,15 @@ const pages = [
     {href: "Main", string: 'Главная'}];
 
 
+NavBar.propTypes = {
+    setPathRouter: setPathRouter.func.isRequired,
+};
+
 function NavBar({setPathRouter}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const LOGO = "PSUTI"
 
-    NavBar.propTypes = {
-        setPathRouter: setPathRouter.func,
-    };
+
 
 
     const handleOpenNavMenu = (event) => {
