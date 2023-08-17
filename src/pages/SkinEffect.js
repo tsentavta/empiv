@@ -8,17 +8,17 @@ import {materialConsts} from "../components/consts";
 
 function electricFieldStrength(z_position, electric_field_strength, frequency, relative_magnetic_permeability, electrical_conductance) {
     const rmp = relative_magnetic_permeability
-    const mp = 4 * Math.PI//* 10^(-7) ->
+    const mp = 4 * Math.PI
     const ec = electrical_conductance
     const f = frequency
     const efs = electric_field_strength
     const z = z_position
-    console.log(ec)
+    console.log({z_position,electric_field_strength,frequency,relative_magnetic_permeability,electrical_conductance})
 
     const y = (1/Math.sqrt((10000000) / (Math.PI * f * mp * rmp * ec)))
 
-    let ans =  Math.exp(-z * (y))
-    return efs * ans
+    let ans =  efs * Math.exp(-z * (y))
+    return ans.toFixed(4)
 }
 
 
@@ -30,6 +30,7 @@ export function SkinEffect() {
     const [material, setMaterial] = useState(1) // выбор материала
     const [constForMaterial, setConstForMaterial] = useState(1) // коэффициент материала
     const [probeDisplacement, setProbeDisplacement] = useState(0.1) // вывод значения смещение зонда в мм
+    const [frequencyGen, setFrequencyGen] = useState(1000)
 
     useEffect(() => {
         setTranslateX(sliderValue * 3);
@@ -46,19 +47,19 @@ export function SkinEffect() {
 
         switch (material) {
             case 1:
-                setEmpValue(electricFieldStrength(position, 1, 1000, materialConsts.copper.relative_magnetic_permeability, materialConsts.copper.electrical_conductance))
+                setEmpValue(electricFieldStrength(position, 1, frequencyGen, materialConsts.copper.relative_magnetic_permeability, materialConsts.copper.electrical_conductance))
                 break
             case 2:
-                setEmpValue(electricFieldStrength(position, 1, 1000, materialConsts.tin.relative_magnetic_permeability, materialConsts.tin.electrical_conductance))
+                setEmpValue(electricFieldStrength(position, 1, frequencyGen, materialConsts.tin.relative_magnetic_permeability, materialConsts.tin.electrical_conductance))
                 break
             case 3:
-                setEmpValue(electricFieldStrength(position, 1, 1000, materialConsts.brass.relative_magnetic_permeability, materialConsts.brass.electrical_conductance))
+                setEmpValue(electricFieldStrength(position, 1, frequencyGen, materialConsts.brass.relative_magnetic_permeability, materialConsts.brass.electrical_conductance))
                 break
             case 4:
-                setEmpValue(electricFieldStrength(position, 1, 1000, materialConsts.steel.relative_magnetic_permeability, materialConsts.steel.electrical_conductance))
+                setEmpValue(electricFieldStrength(position, 1, frequencyGen, materialConsts.steel.relative_magnetic_permeability, materialConsts.steel.electrical_conductance))
                 break
         }
-    }, [sliderValue, material])
+    }, [sliderValue, material, frequencyGen])
 
     return (
         <>
@@ -85,10 +86,20 @@ export function SkinEffect() {
                         </Select>
                     </FormControl>
                 </div>
-
-                {
-
-                }
+                <div className={classes.flexContainerItem}>
+                    <TextField
+                        label="Генератор (Гц)"
+                        value={frequencyGen}
+                        type="number"
+                        onChange={(e) => {
+                            setFrequencyGen(e.target.value)
+                            // setConstForMaterial(Number(e.target.value))
+                        }}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </div>
             </div>
 
             <h2>Исследуемая установка:</h2>
