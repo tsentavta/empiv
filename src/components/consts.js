@@ -23,14 +23,15 @@ export const materialConsts = {
         name: "Олово",
         relative_magnetic_permeability: 1.000004,     //относительная магнитна проницаемость
         // relative_permeability: 1,       //диэлектрическая проницаемость
-        electrical_conductance: 8330000,      //проводимость
+        electrical_conductance: (1/1.13)*10000000,      //проводимость
         // electrical_resistance: 1,       //сопротивление
     },
     brass: {
         name: "Латунь",
         relative_magnetic_permeability: 1.000004,     //относительная магнитна проницаемость
         // relative_permeability: 1,       //диэлектрическая проницаемость
-        electrical_conductance: 80000,      //проводимость
+        electrical_conductance: (1/6.3)*100000000,      //проводимость
+        // electrical_conductance: 80000,      //проводимость
         // electrical_resistance: 1,       //сопротивление
     },
     steel: {
