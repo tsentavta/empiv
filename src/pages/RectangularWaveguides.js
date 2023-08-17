@@ -13,7 +13,7 @@ function electricFieldStrength(z_position, frequency) {
         const y = Math.sqrt((1000000000000000) / (2 * Math.PI * f * Math.PI))
         ans = Math.exp(-z * (y))
     } else {
-        ans = Math.abs(Math.cos(2*Math.PI*f*z/600000000))
+        ans = Math.abs(Math.cos(2*Math.PI*f*z/300000000))
     }
 
     return Math.pow(ans, 2).toFixed(4)
