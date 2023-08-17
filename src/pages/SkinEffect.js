@@ -13,10 +13,11 @@ function electricFieldStrength(z_position, electric_field_strength, frequency, r
     const f = frequency
     const efs = electric_field_strength
     const z = z_position
+    console.log(ec)
 
-    const y = (Math.sqrt((10^(7)) / (Math.PI * f * mp * rmp * ec)))*z
+    const y = (1/Math.sqrt((10000000) / (Math.PI * f * mp * rmp * ec)))
 
-    let ans =  Math.exp(-y)
+    let ans =  Math.exp(-z * (y))
     return efs * ans
 }
 

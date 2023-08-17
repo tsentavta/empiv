@@ -34,7 +34,7 @@ function FullResistances() {
           </FormControl>
           <div className={classes.textField}>
               <TextField
-                  label="Ампереметр"
+                  label="Амперметр"
                   defaultValue="1 А"
                   InputProps={{
                       readOnly: true,

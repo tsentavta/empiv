@@ -15,7 +15,7 @@ export const materialConsts = {
         name: "Медь",
         relative_magnetic_permeability: 0.999994,     //относительная магнитна проницаемость
         // relative_permeability: 1,       //диэлектрическая проницаемость
-        electrical_conductance: 58100000,      //проводимость
+        electrical_conductance: 59594755,      //проводимость
         // electrical_resistance: 1,       //сопротивление
     },
 

@@ -35,7 +35,7 @@ export function RectangularWaveguides() {
 
                 <div className={classes.flexContainerItem}>
                     <TextField
-                        label="Ампереметр"
+                        label="Амперметр"
                         defaultValue="1 А"
                         InputProps={{
                             readOnly: true,
