@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classes from "./RectangularWaveguides.module.sass";
-import expImg from "../img/imgSkin.png"
+import expImg from "../img/RectangularWaveguidesImg.png"
 import {FormControl, Input, InputLabel, MenuItem, Select, Slider, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 
@@ -59,12 +59,25 @@ export function RectangularWaveguides() {
             <h2>Исследуемая установка:</h2>
             <div className={classes.boxContainer}>
 
-                <div className={classes.imgBox}>
-                    {/*<div className={clsx({backgroundColor: '#b87333'}, classes.img)}/>*/}
-                    <div className={classes.img}/>
-                    {/*<div className={classes.image}/>*/}
-                    <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[0]}px`}}></div>
-                    <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[1]}px`}}></div>
+
+                    <div className={classes.flexContainer}>
+                        <div className={classes.flexContainerItem}>
+                            <p className={classes.verticalText}>Начало волновода</p>
+                        </div>
+                        <div className={classes.flexContainerItem}>
+                            <div className={classes.imgBox}>
+                                <div  className={classes.img}/>
+                                <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[0]}px`}}></div>
+                                <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[1]}px`}}></div>
+                                <div className={(classes.verticalLineStatic)}></div>
+                            </div>
+
+                        </div>
+                        <div className={classes.flexContainerItem}>
+                            <p className={classes.verticalText}>Выход волновода</p>
+                        </div>
+
+
                 </div>
 
                 <div className={classes.sliderBox}>
