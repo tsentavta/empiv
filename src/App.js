@@ -9,6 +9,14 @@ import FullResistances from './pages/FullResistances';
 import {Container} from "react-bootstrap";
 import classes from "./App.module.css";
 
+const pages = [
+  {href: "SkinEffect", string: 'Скин-эффект'},
+  {href: "RectangularWaveguides", string: 'Прямоугольный волновод'},
+  {href: "VolumetricResonator", string: 'Объемный Резонатор'},
+  {href: "FullResistances", string: 'Полные сопротивления'},
+  {href: "Main", string: 'Главная'}];
+
+
 function App() {
   const [pathRouter, setPathRouter] = useState(localStorage.getItem('path') ? localStorage.getItem('path') : 'Main');
   useEffect(() => {
@@ -17,7 +25,7 @@ function App() {
 
   return (
     <div className={classes.App}>
-      <NavBar setPathRouter={setPathRouter} />
+      <NavBar setPathRouter={setPathRouter} pages={pages} />
         <Container className={classes.container}>
             {
                 (pathRouter === 'Main') ? <Main /> : null
@@ -37,7 +45,7 @@ function App() {
             {/* <PublicRoutes/> */}
         </Container>
 
-      <Footer />
+      <Footer setPathRouter={setPathRouter} pages={pages} />
 
     </div>
   );

@@ -15,21 +15,14 @@ import logo from "../../img/logo.ico"
 import classes from "./NavBar.module.sass";
 import * as setPathRouter from "prop-types";
 
-const pages = [
-    {href: "SkinEffect", string: 'Скин-эффект'},
-    {href: "RectangularWaveguides", string: 'Прямоугольный волновод'},
-    {href: "VolumetricResonator", string: 'Объемный Резонатор'},
-    {href: "FullResistances", string: 'Полные сопротивления'},
-    {href: "Main", string: 'Главная'}];
-
 
 NavBar.propTypes = {
     setPathRouter: setPathRouter.func.isRequired,
 };
 
-function NavBar({setPathRouter}) {
+function NavBar({setPathRouter, pages}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const LOGO = "PSUTI"
+    const LOGO = "ЕМПиВ"
 
 
 
@@ -47,14 +40,10 @@ function NavBar({setPathRouter}) {
 
     return (
         <AppBar position="static" className={classes.appBarBackground}>
-            <Container maxWidth="xl" className={classes.container}>
-                <Toolbar disableGutters
-                         sx={{
-
-                         }}
-                >
+            <Container maxWidth="xl" >
+                <Toolbar disableGutters>
                     <IconButton sx={{ display: {xs: 'none', md: 'flex'}, p: 0, margin: '10px'}}>
-                        <Avatar alt="Remy Sharp" src={logo} />
+                        <Avatar alt="" src={logo} />
                     </IconButton>
 
                     <Typography
@@ -103,13 +92,11 @@ function NavBar({setPathRouter}) {
                             onClose={() => handleCloseNavMenu(null)}
                             sx={{
                                 display: {xs: 'block', md: 'none'},
-
                             }}
                         >
                             {pages.map((page, i) => (
                                 <MenuItem key={i} onClick={() => handleCloseNavMenu(page.href)}>
                                     <Typography textAlign="center" sx={{
-
                                         fontFamily: 'monospace',
                                         textDecoration: 'none',
                                     }}>{page.string}</Typography>
@@ -117,7 +104,7 @@ function NavBar({setPathRouter}) {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
+                    <Avatar alt="" src={logo} sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
                     <Typography
                         variant="h5"
                         noWrap

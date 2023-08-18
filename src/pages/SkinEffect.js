@@ -107,7 +107,7 @@ export function SkinEffect() {
 
                 <div className={classes.imgBox}>
                     {/*<div className={clsx({backgroundColor: '#b87333'}, classes.img)}/>*/}
-                    <img src={expImg} alt={'img'} className={classes.img}/>
+                    <div className={classes.img}/>
                     {/*<div className={classes.image}/>*/}
                     <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX/2}px`}}></div>
                 </div>
