@@ -9,7 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import {Avatar} from "@mui/material";
 import logo from "../../img/logo.ico"
 import classes from "./NavBar.module.sass";
@@ -36,7 +35,7 @@ function NavBar({setPathRouter, pages}) {
             setPathRouter(href)
         }
         setAnchorElNav(null);
-    };
+    }
 
     return (
         <AppBar position="static" className={classes.appBarBackground}>

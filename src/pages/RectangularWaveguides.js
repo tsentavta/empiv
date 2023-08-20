@@ -5,13 +5,15 @@ import {FormControl, Input, InputLabel, MenuItem, Select, Slider, TextField} fro
 import {useEffect, useState} from "react";
 
 function electricFieldStrength(z_position, frequency) {
+    const fkr = 6517000000
+    const c = 2.998 * 100000000
     const f = frequency * 1000000
     const z = z_position
     console.log({f,z})
     let ans;
-    if (frequency<6520) {
-        const y = Math.sqrt((100000000000000) / (2 * Math.PI * f * Math.PI))
-        ans = Math.exp(-z * (y))
+    if (frequency<fkr) {
+        const y = 2 * Math.PI * Math.sqrt(Math.pow(fkr, 2) - Math.pow(f, 2))
+        ans = Math.exp(-z * y / c)
     } else {
         ans = Math.abs(Math.cos(2*Math.PI*f*z/300000000))
     }
@@ -68,7 +70,7 @@ export function RectangularWaveguides() {
                             <div className={classes.imgBox}>
                                 <div  className={classes.img}/>
                                 <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[0]}px`}}></div>
-                                <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[1]}px`}}></div>
+                                {/*<div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[1]}px`}}></div>*/}
                                 <div className={(classes.verticalLineStatic)}></div>
                             </div>
 
@@ -84,9 +86,9 @@ export function RectangularWaveguides() {
                     <Slider
                         getAriaLabel={() => 'Temperature range'}
                         valueLabelDisplay="auto"
-                        value={sliderValue}
+                        value={sliderValue[0]}
                         onChange={(e) => {
-                            setSliderValue(e.target.value)
+                            setSliderValue([e.target.value, 0])
                         }}
                         min={0}
                         max={100}
@@ -108,19 +110,19 @@ export function RectangularWaveguides() {
                     />
                 </div>
 
-                <div className={classes.flexContainerItem}>
-                    <TextField
-                        label="Зонд 2 (мм)"
-                        value={sliderValue[1]}
-                        type="number"
-                        onChange={(e) => {
-                            setSliderValue([sliderValue[0], Math.abs(e.target.value)])
-                        }}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </div>
+                {/*<div className={classes.flexContainerItem}>*/}
+                {/*    <TextField*/}
+                {/*        label="Зонд 2 (мм)"*/}
+                {/*        value={sliderValue[1]}*/}
+                {/*        type="number"*/}
+                {/*        onChange={(e) => {*/}
+                {/*            setSliderValue([sliderValue[0], Math.abs(e.target.value)])*/}
+                {/*        }}*/}
+                {/*        InputLabelProps={{*/}
+                {/*            shrink: true,*/}
+                {/*        }}*/}
+                {/*    />*/}
+                {/*</div>*/}
             </div>
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
@@ -132,15 +134,15 @@ export function RectangularWaveguides() {
                         }}
                     />
                 </div>
-                <div className={classes.flexContainerItem}>
-                    <TextField
-                        label="Амперметр зонда 2"
-                        value={I[1]}
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                </div>
+                {/*<div className={classes.flexContainerItem}>*/}
+                {/*    <TextField*/}
+                {/*        label="Амперметр зонда 2"*/}
+                {/*        value={I[1]}*/}
+                {/*        InputProps={{*/}
+                {/*            readOnly: true,*/}
+                {/*        }}*/}
+                {/*    />*/}
+                {/*</div>*/}
             </div>
 
         </>
