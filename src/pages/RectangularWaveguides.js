@@ -8,15 +8,18 @@ function electricFieldStrength(z_position, frequency) {
     const fkr = 6517000000
     const c = 2.998 * 100000000
     const f = frequency * 1000000
+    const l = c/f
     const z = z_position
-    console.log({f,z})
+    const lg = l/Math.sqrt(1-Math.pow(l/0.046, 2))
+    const fg = c/lg
+
+    console.log({f,z,fkr,fg,lg})
     let ans;
     if (f<fkr) {
-        const y = 2 * Math.PI * Math.sqrt(Math.pow(fkr, 2) - Math.pow(f, 2))
+        const y = 2 * Math.PI * Math.sqrt(Math.pow(fkr, 2) - Math.pow(fg, 2))
         ans = Math.exp(-z * y / c)
     } else {
-        ans = Math.abs(Math.sin(2*Math.PI*f*z/300000000))
-        console.log(ans)
+        ans = Math.abs(Math.sin(2*Math.PI*fg*z/c))
     }
 
     return Math.pow(ans, 2).toFixed(4)
