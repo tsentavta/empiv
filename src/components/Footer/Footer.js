@@ -3,6 +3,9 @@ import * as React from 'react';
 import classes from "./Footer.module.sass";
 import {AppBar, Container, Link} from "@mui/material";
 import * as setPathRouter from "prop-types";
+import {ReactComponent as MuiLogo} from "../../img/muilogo.svg"
+import {ReactComponent as ReactLogo} from "../../img/Reactlogo.svg"
+import {ReactComponent as GitHubLogo} from "../../img/github.svg"
 
 Footer.propTypes = {
     setPathRouter: setPathRouter.func.isRequired,
@@ -19,6 +22,9 @@ export function Footer({setPathRouter, pages}) {
     return (
         <AppBar position={"relative"} className={classes.background}>
             <Container maxWidth="xl">
+
+
+
                 <div className={classes.flexContainer}>
                     <div className={classes.flexContainerNav}>
                         <div className={classes.flexContainerItem}>
@@ -74,8 +80,23 @@ export function Footer({setPathRouter, pages}) {
                     </div>
 
                     <div className={classes.textBy}>
-                        <p>by tsentavta, React, gitHub</p>
-                        <p>Copyright © 2023 Material UI SAS, trading as MUI.</p>
+                        <a href={"https://mui.com/"}>
+                            <div className={classes.divMuiLogo}>
+                                <MuiLogo/> Material UI
+                            </div>
+                        </a>
+
+                        <a href={"https://legacy.reactjs.org/"}>
+                            <div className={classes.divMuiLogo}>
+                                <ReactLogo/> React
+                            </div>
+                        </a>
+                        <a href={"https://github.com/tsentavta/empiv/tree/main/src"}>
+                            <div className={classes.divMuiLogo}>
+                                <GitHubLogo/> by tsentavta
+                            </div>
+                        </a>
+
 
                     </div>
                 </div>
