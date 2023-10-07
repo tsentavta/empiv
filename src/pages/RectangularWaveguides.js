@@ -3,6 +3,10 @@ import classes from "./RectangularWaveguides.module.sass";
 import expImg from "../img/RectangularWaveguidesImg.png"
 import {FormControl, Input, InputLabel, MenuItem, Select, Slider, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
+import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
+import Generator from "../components/Block/Generator/Generator";
+import XPosition from "../components/Block/XPosition/XPosition";
+import clsx from "classnames";
 
 function electricFieldStrength(z_position, frequency) {
     const fkr = 6517000000
@@ -39,7 +43,7 @@ export function RectangularWaveguides() {
             electricFieldStrength(sliderValue[0] / 1000, frequencyGen),
             electricFieldStrength(sliderValue[1] / 1000, frequencyGen)
         ])
-        setTranslateX([sliderValue[0] * 3, sliderValue[1] * 3]);
+        setTranslateX([sliderValue[0] * 4.16, sliderValue[1] * 3]);
     }, [sliderValue, frequencyGen])
 
 
@@ -48,51 +52,25 @@ export function RectangularWaveguides() {
             <h1>Исследование собственных волн прямоугольного волновода</h1>
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
-                    <TextField
-                        label="Генератор (МГц)"
-                        value={frequencyGen}
-                        type="number"
-                        onChange={(e) => {
-                            setFrequencyGen(Math.abs(e.target.value))
-                            // setConstForMaterial(Number(e.target.value))
-                        }}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                    <Generator setFunction={setFrequencyGen}/>
+                </div>
+                <div className={classes.flexContainerItem}>
+                    <Ampermetr value={I[0]} />
                 </div>
             </div>
             <h2>Исследуемая установка:</h2>
-            <div className={classes.boxContainer}>
+            <div className={clsx(classes.flexContainerItem, classes.flexItemSlider)}>
 
-
-                    <div className={classes.flexContainer}>
-                        <div className={classes.flexContainerItem}>
-                            <p className={classes.verticalText}>Начало волновода</p>
-                        </div>
-                        <div className={classes.flexContainerItem}>
-                            <div className={classes.imgBox}>
-                                <div  className={classes.img}/>
-                                <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[0]}px`}}></div>
-                                {/*<div className={(classes.verticalLine)} style={{transform: `translateX(${translateX[1]}px`}}></div>*/}
-                                <div className={(classes.verticalLineStatic)}></div>
-                            </div>
-
-                        </div>
-                        <div className={classes.flexContainerItem}>
-                            <p className={classes.verticalText}>Выход волновода</p>
-                        </div>
-
-
+                <div className={classes.imgBox}>
+                    <div className={(classes.volnovodPS)}/>
+                    <div className={(classes.shup)} style={{ transform: `translateX(${translateX[0]}px` }}/>
                 </div>
 
                 <div className={classes.sliderBox}>
                     <Slider
-                        getAriaLabel={() => 'Temperature range'}
-                        valueLabelDisplay="auto"
                         value={sliderValue[0]}
                         onChange={(e) => {
-                            setSliderValue([e.target.value, 0])
+                            setSliderValue([e.target.value,0]);
                         }}
                         min={0}
                         max={100}
@@ -100,55 +78,8 @@ export function RectangularWaveguides() {
                 </div>
             </div>
             <div className={classes.flexContainer}>
-                <div className={classes.flexContainerItem}>
-                    <TextField
-                        label="Зонд 1 (мм)"
-                        value={sliderValue[0]}
-                        type="number"
-                        onChange={(e) => {
-                            setSliderValue([Math.abs(e.target.value), sliderValue[1]])
-                        }}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </div>
-
-                {/*<div className={classes.flexContainerItem}>*/}
-                {/*    <TextField*/}
-                {/*        label="Зонд 2 (мм)"*/}
-                {/*        value={sliderValue[1]}*/}
-                {/*        type="number"*/}
-                {/*        onChange={(e) => {*/}
-                {/*            setSliderValue([sliderValue[0], Math.abs(e.target.value)])*/}
-                {/*        }}*/}
-                {/*        InputLabelProps={{*/}
-                {/*            shrink: true,*/}
-                {/*        }}*/}
-                {/*    />*/}
-                {/*</div>*/}
+                <XPosition value={sliderValue} setFunction={setSliderValue}/>
             </div>
-            <div className={classes.flexContainer}>
-                <div className={classes.flexContainerItem}>
-                    <TextField
-                        label="Амперметр зонда 1"
-                        value={I[0]}
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                </div>
-                {/*<div className={classes.flexContainerItem}>*/}
-                {/*    <TextField*/}
-                {/*        label="Амперметр зонда 2"*/}
-                {/*        value={I[1]}*/}
-                {/*        InputProps={{*/}
-                {/*            readOnly: true,*/}
-                {/*        }}*/}
-                {/*    />*/}
-                {/*</div>*/}
-            </div>
-
         </>
 
     );

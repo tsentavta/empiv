@@ -4,6 +4,9 @@ import expImg from "../img/imgSkin.png"
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {materialConsts} from "../components/consts";
+import Generator from "../components/Block/Generator/Generator";
+import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
+import XPosition from "../components/Block/XPosition/XPosition";
 
 
 function electricFieldStrength(z_position, electric_field_strength, frequency, relative_magnetic_permeability, electrical_conductance) {
@@ -76,7 +79,6 @@ export function SkinEffect() {
                             label="Материал"
                             onChange={(e) => {
                                 setMaterial(e.target.value)
-                                // setConstForMaterial(Number(e.target.value))
                             }}
                         >
                             <MenuItem value={1}>Медь</MenuItem>
@@ -86,29 +88,15 @@ export function SkinEffect() {
                         </Select>
                     </FormControl>
                 </div>
-                <div className={classes.flexContainerItem}>
-                    <TextField
-                        label="Генератор (Гц)"
-                        value={frequencyGen}
-                        type="number"
-                        onChange={(e) => {
-                            setFrequencyGen(e.target.value)
-                            // setConstForMaterial(Number(e.target.value))
-                        }}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </div>
+
+                <Generator value={frequencyGen} title={"Генератор (Гц)"} setFunction={setFrequencyGen}/>
             </div>
 
             <h2>Исследуемая установка:</h2>
             <div className={classes.boxContainer}>
 
                 <div className={classes.imgBox}>
-                    {/*<div className={clsx({backgroundColor: '#b87333'}, classes.img)}/>*/}
                     <div className={classes.img}/>
-                    {/*<div className={classes.image}/>*/}
                     <div className={(classes.verticalLine)} style={{transform: `translateX(${translateX/2}px`}}></div>
                 </div>
 
@@ -125,27 +113,8 @@ export function SkinEffect() {
             </div>
 
             <div className={classes.flexContainer}>
-
-
-                <div className={classes.flexContainerItem}>
-                    <TextField
-                        label="E"
-                        value={empValue + ' мВ/м'}
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                </div>
-
-                <div className={classes.flexContainerItem}>
-                    <TextField
-                        label="Координата зонда"
-                        value={probeDisplacement + " мм"}
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                </div>
+                <Ampermetr title={"E"} value={empValue + ' мВ/м'}/>
+                <XPosition title={"Координата зонда"} value={probeDisplacement + " мм"} setFunction={setSliderValue}/>
             </div>
         </>
     );

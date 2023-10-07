@@ -53,6 +53,26 @@ export function Footer({setPathRouter, pages}) {
                             <p>
                                 Семенов Н.А., «Техническая электродинамика» – М.: «Связь», 1973. – 480 с.
                             </p>
+                            <div className={classes.textBy}>
+                                <a href={"https://mui.com/"}>
+                                    <div className={classes.divMuiLogo}>
+                                        <MuiLogo/> Material UI
+                                    </div>
+                                </a>
+
+                                <a href={"https://legacy.reactjs.org/"}>
+                                    <div className={classes.divMuiLogo}>
+                                        <ReactLogo/> React
+                                    </div>
+                                </a>
+                                <a href={"https://github.com/tsentavta/empiv/tree/main/src"}>
+                                    <div className={classes.divMuiLogo}>
+                                        <GitHubLogo/> by tsentavta
+                                    </div>
+                                </a>
+
+
+                            </div>
                         </div>
 
                         <div className={classes.flexContainerItem}>
@@ -79,26 +99,7 @@ export function Footer({setPathRouter, pages}) {
                         </div>
                     </div>
 
-                    <div className={classes.textBy}>
-                        <a href={"https://mui.com/"}>
-                            <div className={classes.divMuiLogo}>
-                                <MuiLogo/> Material UI
-                            </div>
-                        </a>
 
-                        <a href={"https://legacy.reactjs.org/"}>
-                            <div className={classes.divMuiLogo}>
-                                <ReactLogo/> React
-                            </div>
-                        </a>
-                        <a href={"https://github.com/tsentavta/empiv/tree/main/src"}>
-                            <div className={classes.divMuiLogo}>
-                                <GitHubLogo/> by tsentavta
-                            </div>
-                        </a>
-
-
-                    </div>
                 </div>
 
             </Container>

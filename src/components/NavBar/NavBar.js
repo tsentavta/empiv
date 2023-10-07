@@ -21,7 +21,7 @@ NavBar.propTypes = {
 
 function NavBar({setPathRouter, pages}) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const LOGO = "ЕМПиВ"
+    const LOGO = "ЭМПиВ"
 
 
 

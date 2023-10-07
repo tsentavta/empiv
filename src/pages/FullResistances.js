@@ -5,6 +5,7 @@ import {
 import clsx from 'classnames';
 import { Container } from 'react-bootstrap';
 import classes from './FullResistances.module.sass';
+import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
 
 function FullResistances() {
   const [translateX, setTranslateX] = useState(0); // смещение зонда
@@ -31,15 +32,7 @@ function FullResistances() {
                   <FormControlLabel value="БольшойКСВ" control={<Radio />} label="Большой КСВ" />
               </RadioGroup>
           </FormControl>
-          <div className={classes.textField}>
-              <TextField
-                  label="Амперметр"
-                  defaultValue="1 А"
-                  InputProps={{
-                      readOnly: true,
-                  }}
-              />
-          </div>
+          <Ampermetr value={0} />
 
       </div>
       <h2>Исследуемая установка:</h2>

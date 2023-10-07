@@ -5,6 +5,8 @@ import clsx from "classnames";
 import expImg from "../img/exponential_growth_520.jpg";
 import { Slider, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
+import Generator from "../components/Block/Generator/Generator";
+import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
 
 function calculateE(frequency, resonantFrequency, functionQualityFactor) {
     const fr = frequency
@@ -50,35 +52,10 @@ function VolumetricResonator(props) {
             <h1>Исследование вынужденных колебаний в объемном резонаторе</h1>
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
-                    <div className={classes.flexContainerItemGenerator}>
-                        <Button variant="contained" disabled className={classes.titleGenerator}>
-                            Генератор СВЧ
-                        </Button>
-                        <TextField
-                            label="Частота (ГГц)"
-                            type="number"
-                            onChange={(e) => {
-                                setFrequencyGenerator(e.target.value)
-                            }}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </div>
+                    <Generator setFunction={setFrequencyGenerator}/>
                 </div>
                 <div className={classes.flexContainerItem}>
-                    <div className={classes.flexContainerItemGenerator}>
-                        <Button variant="contained" disabled className={classes.titleGenerator}>
-                            Микроамперметр
-                        </Button>
-                        <TextField
-                            label="Амперметр"
-                            value={I}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                        />
-                    </div>
+                    <Ampermetr value={I} />
             </div>
 
         </div>
