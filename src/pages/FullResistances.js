@@ -5,14 +5,13 @@ import {
 import clsx from 'classnames';
 import { Container } from 'react-bootstrap';
 import classes from './FullResistances.module.sass';
-import expImg from '../img/exponential_growth_520.jpg';
 
 function FullResistances() {
   const [translateX, setTranslateX] = useState(0); // смещение зонда
   const [sliderValue, setSliderValue] = useState(0); // для значения slider
 
   useEffect(() => {
-    setTranslateX(sliderValue * 3);
+    setTranslateX(sliderValue * 4.16);
   }, [sliderValue]);
 
   return (
@@ -47,8 +46,8 @@ function FullResistances() {
       <div className={clsx(classes.flexContainerItem, classes.flexItemSlider)}>
 
         <div className={classes.imgBox}>
-          <img src={expImg} alt="img" />
-          <div className={(classes.verticalLine)} style={{ transform: `translateX(${translateX}px` }} />
+            <div className={(classes.volnovodPS)}/>
+            <div className={(classes.shup)} style={{ transform: `translateX(${translateX}px` }}/>
         </div>
 
         <div className={classes.sliderBox}>
