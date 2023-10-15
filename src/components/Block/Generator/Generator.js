@@ -2,13 +2,14 @@ import React from 'react';
 import classes from "../Block.module.sass";
 import {TextField} from "@mui/material";
 
-function Generator({title = "Генератор", titleLabel = "Частота", value, settings, setFunction}) {
+function Generator({title = "Генератор", titleLabel = "Частота",defaultValue= 10000, value, settings, setFunction}) {
     return (
         <div className={classes.flexContainerItem}>
             <div className={classes.titleGenerator}>
                 {title}
             </div>
             <TextField
+                defaultValue={defaultValue}
                 label={titleLabel}
                 value={value}
                 type="number"

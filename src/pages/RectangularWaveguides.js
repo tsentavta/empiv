@@ -52,7 +52,7 @@ export function RectangularWaveguides() {
             <h1>Исследование собственных волн прямоугольного волновода</h1>
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
-                    <Generator setFunction={setFrequencyGen}/>
+                    <Generator value={frequencyGen} setFunction={setFrequencyGen}/>
                 </div>
                 <div className={classes.flexContainerItem}>
                     <Ampermetr value={I[0]} />

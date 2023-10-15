@@ -9,30 +9,47 @@ import Generator from "../components/Block/Generator/Generator";
 import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
 
 function calculateE(frequency, resonantFrequency, functionQualityFactor) {
-    const fr = frequency
-    const rFr = resonantFrequency 
+    const fr = frequency*1000000
+    const rFr = resonantFrequency
     const twoQ = 2 * functionQualityFactor
-    const a = fr - rFr
-    const b = rFr / twoQ
-    const ans = Math.pow(a, 2) + Math.pow(b, 2)
-    return Math.sqrt(1 / ans)
+
+    const b = Math.pow(rFr / twoQ, 2)
+    const a = Math.pow(fr - rFr, 2)
+
+    //нормировка
+    const E = 1 / b
+    const c = a+b
+    const Ef = 1/c
+    const ans = Ef/E
+    //
+
+    return (200*Math.sqrt(ans))//(random*111345*Math.sqrt(1 / ans))
+}
+const random = (max = 100) => {
+    let x = Math.random(max);
+    while (!x) {
+        x = Math.random(max)
+    }
+    console.log(x)
+    x = 100
+    return x/100
 }
 
 const marks = [
     {
         value: 0,
         label: 'Низкая',
-        qualityFactor: 1000,
+        qualityFactor: 333,
     },
     {
         value: 1,
         label: 'Средняя',
-        qualityFactor: 10000,
+        qualityFactor: 500,
     },
     {
         value: 2,
         label: 'Высокая',
-        qualityFactor: 100000,
+        qualityFactor: 1000,
     },
 ];
 
@@ -41,7 +58,7 @@ function VolumetricResonator(props) {
 
     const [translateX, setTranslateX] = useState(0) // смещение зонда
     const [sliderValue, setSliderValue] = useState(0) //для значения slider
-    const [frequencyGenerator, setFrequencyGenerator] = useState(10000000000)
+    const [frequencyGenerator, setFrequencyGenerator] = useState(10000)
     const [I, setI] = useState(0)
 
     useEffect(() => {
@@ -52,7 +69,7 @@ function VolumetricResonator(props) {
             <h1>Исследование вынужденных колебаний в объемном резонаторе</h1>
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
-                    <Generator setFunction={setFrequencyGenerator}/>
+                    <Generator setFunction={setFrequencyGenerator} titleLabel={"Частота (МГц)"}/>
                 </div>
                 <div className={classes.flexContainerItem}>
                     <Ampermetr value={I} />

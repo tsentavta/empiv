@@ -7,6 +7,10 @@ import { Container } from 'react-bootstrap';
 import classes from './FullResistances.module.sass';
 import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
 
+function ksvSignal(x,ksv) {
+
+}
+
 function FullResistances() {
   const [translateX, setTranslateX] = useState(0); // смещение зонда
   const [sliderValue, setSliderValue] = useState(0); // для значения slider
