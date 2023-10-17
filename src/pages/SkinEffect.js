@@ -114,7 +114,7 @@ export function SkinEffect() {
 
             <div className={classes.flexContainer}>
                 <Ampermetr title={"E"} value={empValue + ' мВ/м'}/>
-                <XPosition title={"Координата зонда"} value={probeDisplacement + " мм"} setFunction={setSliderValue}/>
+                <XPosition title={"Координата зонда"} value={probeDisplacement} setFunction={setSliderValue}/>
             </div>
         </>
     );

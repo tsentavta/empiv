@@ -1,23 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import {
-  FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Slider, TextField,
-} from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import {FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Slider,} from '@mui/material';
 import clsx from 'classnames';
-import { Container } from 'react-bootstrap';
 import classes from './FullResistances.module.sass';
 import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
+import XPosition from "../components/Block/XPosition/XPosition";
 
-function ksvSignal(x,ksv) {
+function ksvSignal(x,value) {
+    const n = workload[value].value
+    const a = 1/n
+    const e1 = Math.exp(Math.abs(n * Math.cos(x / 8))) - 1
+    const e2 = Math.exp(n) - 1
+    const e = e1/e2
+    return 200 * a * e + n - 1
 
 }
 
+const workload = [
+    {
+        workload : "Замыкание",
+        value : 1
+    },
+    {
+        workload : "Малый КСВ",
+        value : 6
+    },
+
+    {
+        workload : "Большой КСВ",
+        value : 2
+    },
+
+]
+
 function FullResistances() {
+    const [myWorkload,setMyWorkload] = useState(0)
+    const [EMP, setEMP] = useState(0)
   const [translateX, setTranslateX] = useState(0); // смещение зонда
   const [sliderValue, setSliderValue] = useState(0); // для значения slider
 
   useEffect(() => {
     setTranslateX(sliderValue * 4.16);
-  }, [sliderValue]);
+      setEMP(ksvSignal(sliderValue,myWorkload))
+
+  }, [sliderValue,myWorkload]);
 
   return (
   // eslint-disable-next-line react/jsx-filename-extension
@@ -28,15 +53,19 @@ function FullResistances() {
               <FormLabel id="demo-radio-buttons-group-label">Характер нагрузки</FormLabel>
               <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="female"
+                  defaultValue={0}
+                  value={myWorkload}
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                      setMyWorkload(e.target.value)
+                  }}
               >
-                  <FormControlLabel value="Замыкание" control={<Radio />} label="Замыкание" />
-                  <FormControlLabel value="МалыйКСВ" control={<Radio />} label="Малый КСВ" />
-                  <FormControlLabel value="БольшойКСВ" control={<Radio />} label="Большой КСВ" />
+                  <FormControlLabel value={0} control={<Radio />} label="Замыкание" />
+                  <FormControlLabel value={1} control={<Radio />} label="Малый КСВ" />
+                  <FormControlLabel value={2} control={<Radio />} label="Большой КСВ" />
               </RadioGroup>
           </FormControl>
-          <Ampermetr value={0} />
+          <Ampermetr value={EMP} />
 
       </div>
       <h2>Исследуемая установка:</h2>
@@ -49,7 +78,7 @@ function FullResistances() {
 
         <div className={classes.sliderBox}>
           <Slider
-            value={sliderValue}
+            value={sliderValue[0]}
             onChange={(e) => {
               setSliderValue(e.target.value);
             }}
@@ -57,7 +86,11 @@ function FullResistances() {
             max={100}
           />
         </div>
+
       </div>
+        <div className={classes.flexContainer}>
+            <XPosition value={sliderValue} setFunction={setSliderValue}/>
+        </div>
     </>
   );
 }

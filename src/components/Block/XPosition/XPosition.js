@@ -1,7 +1,7 @@
 import React from 'react';
 import {TextField} from "@mui/material";
 import classes from "../Block.module.sass";
-function XPosition({title = "Зонд 1",titleLabel = "Расстояние", value, settings, setFunction}) {
+function XPosition({title = "Координата зонда",titleLabel = "Расстояние (mm)", value, settings, setFunction}) {
     return (
         <div className={classes.flexContainerItem}>
             <div className={classes.titleGenerator}>
@@ -9,10 +9,10 @@ function XPosition({title = "Зонд 1",titleLabel = "Расстояние", va
             </div>
             <TextField
                 label={titleLabel}
-                value={value[0]}
+                value={value}
                 type="number"
                 onChange={(e) => {
-                    setFunction([Math.abs(e.target.value), value[1]])
+                    setFunction(Math.abs(e.target.value))
                 }}
                 InputLabelProps={{
                     shrink: true,

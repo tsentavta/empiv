@@ -58,18 +58,29 @@ function VolumetricResonator(props) {
 
     const [translateX, setTranslateX] = useState(0) // смещение зонда
     const [sliderValue, setSliderValue] = useState(0) //для значения slider
-    const [frequencyGenerator, setFrequencyGenerator] = useState(10000)
+    const [sliderValueGenerator, setSliderValueGenerator] = useState(6517) //для значения slider
+    const [frequencyGenerator, setFrequencyGenerator] = useState(6517)
     const [I, setI] = useState(0)
 
     useEffect(() => {
-        setI (calculateE(frequencyGenerator, 10000000000, marks[sliderValue].qualityFactor))
+        setI (calculateE(frequencyGenerator, 6517000000, marks[sliderValue].qualityFactor))
     }, [sliderValue, frequencyGenerator])
     return (
         <>
             <h1>Исследование вынужденных колебаний в объемном резонаторе</h1>
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
-                    <Generator setFunction={setFrequencyGenerator} titleLabel={"Частота (МГц)"}/>
+                    <Generator setFunction={setFrequencyGenerator} value={frequencyGenerator} defaultValue={6517} titleLabel={"Частота (МГц)"}/>
+                    <div className={classes.sliderBox}>
+                        <Slider
+                            value={frequencyGenerator}
+                            onChange={(e) => {
+                                setFrequencyGenerator(e.target.value)
+                            }}
+                            min={6477}
+                            max={6557}
+                        />
+                    </div>
                 </div>
                 <div className={classes.flexContainerItem}>
                     <Ampermetr value={I} />

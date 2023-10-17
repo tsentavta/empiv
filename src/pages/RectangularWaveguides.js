@@ -8,42 +8,39 @@ import Generator from "../components/Block/Generator/Generator";
 import XPosition from "../components/Block/XPosition/XPosition";
 import clsx from "classnames";
 
-function electricFieldStrength(z_position, frequency) {
+function electricFieldStrength(z_position = 0, frequency = 6517000000) {
     const fkr = 6517000000
     const c = 2.998 * 100000000
     const f = frequency * 1000000
     const l = c/f
-    const z = z_position
-    const lg = l / Math.sqrt(1-Math.pow(l/0.046, 2))
+    const z = (z_position+40)/ 1000
+    const lg = l / Math.sqrt(Math.abs(1-Math.pow(l/0.046, 2)))
     const fg = c/lg
+    const tt = Math.sqrt(Math.abs(1-Math.pow(l/0.046, 2)))
 
-    console.log({f,z,fkr,fg,lg})
+    console.log({f,z,fkr,tt,lg})
     let ans;
     if (f<fkr) {
         const y = 2 * Math.PI * Math.sqrt(Math.pow(fkr, 2) - Math.pow(f, 2))
         ans = Math.exp(-z * y / c)
     } else {
-        ans = Math.abs(Math.sin(2*Math.PI*fg*z/c))
+        ans = Math.abs(Math.cos(2 * Math.PI * fg * z / c))
     }
 
-    return Math.pow(ans, 2).toFixed(4)
+    return 200*Math.pow(ans, 2).toFixed(4)
 }
 
 
 export function RectangularWaveguides() {
 
-    const [translateX, setTranslateX] = useState([0, 0]) // смещение зонда
-    const [sliderValue, setSliderValue] = useState([20, 37]) //для значения slider
-    const [frequencyGen, setFrequencyGen] = useState(6500)
-    const [I, setI] = useState([0, 0])
+    const [translateX, setTranslateX] = useState(0) // смещение зонда
+    const [sliderValue, setSliderValue] = useState(20) //для значения slider
+    const [frequencyGen, setFrequencyGen] = useState(6517)
+    const [I, setI] = useState(0)
 
     useEffect(() => {
-        console.log({1:sliderValue[1] / 1000})
-        setI([
-            electricFieldStrength(sliderValue[0] / 1000, frequencyGen),
-            electricFieldStrength(sliderValue[1] / 1000, frequencyGen)
-        ])
-        setTranslateX([sliderValue[0] * 4.16, sliderValue[1] * 3]);
+        setI(electricFieldStrength(sliderValue, frequencyGen))
+        setTranslateX(sliderValue * 4.16);
     }, [sliderValue, frequencyGen])
 
 
@@ -55,7 +52,7 @@ export function RectangularWaveguides() {
                     <Generator value={frequencyGen} setFunction={setFrequencyGen}/>
                 </div>
                 <div className={classes.flexContainerItem}>
-                    <Ampermetr value={I[0]} />
+                    <Ampermetr value={I} />
                 </div>
             </div>
             <h2>Исследуемая установка:</h2>
@@ -63,14 +60,14 @@ export function RectangularWaveguides() {
 
                 <div className={classes.imgBox}>
                     <div className={(classes.volnovodPS)}/>
-                    <div className={(classes.shup)} style={{ transform: `translateX(${translateX[0]}px` }}/>
+                    <div className={(classes.shup)} style={{ transform: `translateX(${translateX}px` }}/>
                 </div>
 
                 <div className={classes.sliderBox}>
                     <Slider
-                        value={sliderValue[0]}
+                        value={sliderValue}
                         onChange={(e) => {
-                            setSliderValue([e.target.value,0]);
+                            setSliderValue(e.target.value);
                         }}
                         min={0}
                         max={100}
