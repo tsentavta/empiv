@@ -10,7 +10,7 @@ function Ampermetr({title = "Амперметр",titleLabel = "Микроамп�
             </div>
             <TextField
                 label={titleLabel}
-                value={value}
+                value={value.toFixed(5)}
                 InputProps={{
                     readOnly: true,
                 }}
