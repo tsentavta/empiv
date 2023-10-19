@@ -8,14 +8,7 @@ import VolumetricResonator from './pages/VolumetricResonator';
 import FullResistances from './pages/FullResistances';
 import {Container} from "react-bootstrap";
 import classes from "./App.module.css";
-
-const pages = [
-  {href: "SkinEffect", string: 'Скин-эффект'},
-  {href: "RectangularWaveguides", string: 'Прямоугольный волновод'},
-  {href: "VolumetricResonator", string: 'Объемный Резонатор'},
-  {href: "FullResistances", string: 'Полные сопротивления'},
-  {href: "Main", string: 'Главная'}];
-
+import pages from "./pages.js"
 
 function App() {
   const [pathRouter, setPathRouter] = useState(localStorage.getItem('path') ? localStorage.getItem('path') : 'Main');

@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from "../Block.module.sass";
 import {TextField} from "@mui/material";
 
-function Ampermetr({title = "Амперметр",titleLabel = "Микроампер", value, settings}) {
+function Ampermetr({title = "Амперметр",titleLabel = "Микроампер", value = 0, settings}) {
+    let valueAmpermetr
+    try {
+        valueAmpermetr = value.toFixed(4)
+    } catch (e) {
+        valueAmpermetr = value
+    }
     return (
         <div className={classes.flexContainerItem}>
             <div className={classes.titleGenerator}>
@@ -10,7 +16,7 @@ function Ampermetr({title = "Амперметр",titleLabel = "Микроамп�
             </div>
             <TextField
                 label={titleLabel}
-                value={value.toFixed(5)}
+                value={valueAmpermetr}
                 InputProps={{
                     readOnly: true,
                 }}

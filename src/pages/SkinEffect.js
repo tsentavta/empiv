@@ -89,7 +89,7 @@ export function SkinEffect() {
                     </FormControl>
                 </div>
 
-                <Generator value={frequencyGen} title={"Генератор (Гц)"} setFunction={setFrequencyGen}/>
+                <Generator value={frequencyGen} titleLabel={'Частота (Гц)'} title={"Генератор"} setFunction={setFrequencyGen}/>
             </div>
 
             <h2>Исследуемая установка:</h2>
