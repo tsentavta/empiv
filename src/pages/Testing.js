@@ -5,14 +5,15 @@ import Button from "@mui/material/Button";
 import {useEffect, useState} from "react";
 import cx from "classnames";
 import XPosition from "../components/Block/XPosition/XPosition";
+import Box from "@mui/material/Box";
 
-const massScale = [0.1, 10, 100, 200]
+const massScale = [0.2, 20, 200, 400, 800]
 const minDeg = -47
 const maxDeg = 47
 const UserStyleAmperemeter = ['Small', 'Medium']
 
 
-export function Testing({styleAmperemeter = UserStyleAmperemeter[1]}) {
+export function Testing({styleAmperemeter = UserStyleAmperemeter[0], value = 0, settings } ) {
     let isStyleAmperemeter
     switch (styleAmperemeter) {
         case 'Small':
@@ -24,27 +25,35 @@ export function Testing({styleAmperemeter = UserStyleAmperemeter[1]}) {
     }
 
     const [rotateDeg, setRotateDeg] = useState(minDeg)
-    const [valueA, setValueA] = useState(0)
-    const [scale, setScale] = useState(massScale[3])
+    const [scale, setScale] = useState(massScale[massScale.length-1])
 
     useEffect(() => {
-        let degrees = valueA/scale//Math.acos(valueA/scale)
+        let degrees = value/scale//Math.acos(valueA/scale)
         if (degrees>=1) {
             degrees = maxDeg
         }
         else {
-            degrees = (2*valueA*maxDeg/scale)+minDeg
+            degrees = (2*value*maxDeg/scale)+minDeg
         }
         setRotateDeg(degrees)
-    }, [valueA, scale])
+    }, [value, scale])
 
     return (
         <div>
-            <XPosition title={"Ток"} titleLabel={"Ампер"} value={valueA} setFunction={setValueA}/>
-            <div>
+
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    '& > *': {
+                        m: 1,
+                    },
+                }}
+            >
+                <p style={{margin: '0'}}>Множитель:</p>
                 <ButtonGroup
-                    variant="contained"
-                    aria-label="outlined primary button group"
+                    size="small" aria-label="small button group"
                 >
                     {massScale.map((valueScale, key) => {
                         return <Button key={key}
@@ -53,7 +62,10 @@ export function Testing({styleAmperemeter = UserStyleAmperemeter[1]}) {
                                        }}>{valueScale}</Button>
                     })}
                 </ButtonGroup>
-            </div>
+            </Box>
+
+
+
             <div className={cx(classes.defaultStyle, isStyleAmperemeter)}>
                 <div className={classes.amperemeterImage}>
                     <div className={classes.amperemeterLine}
