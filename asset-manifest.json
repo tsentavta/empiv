@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/empiv/static/css/main.d60a42b3.css",
-    "main.js": "/empiv/static/js/main.28f41e69.js",
+    "main.css": "/empiv/static/css/main.41c4e9c7.css",
+    "main.js": "/empiv/static/js/main.4266d533.js",
     "static/media/logo.ico": "/empiv/static/media/logo.013e17eccd349a0fa936.ico",
     "static/media/exponential_growth_520.jpg": "/empiv/static/media/exponential_growth_520.319714a1cec7e65b9021.jpg",
     "static/media/tabloAmper.jpg": "/empiv/static/media/tabloAmper.6025e422e6876fd44642.jpg",
@@ -11,11 +11,11 @@
     "index.html": "/empiv/index.html",
     "static/media/Reactlogo.svg": "/empiv/static/media/Reactlogo.7bfcfea5384d92b8fdb9dd5e41f3d443.svg",
     "static/media/upload_file.svg": "/empiv/static/media/upload_file.12fbd9509c1aa1c27edde8ebc3c57d02.svg",
-    "main.d60a42b3.css.map": "/empiv/static/css/main.d60a42b3.css.map",
-    "main.28f41e69.js.map": "/empiv/static/js/main.28f41e69.js.map"
+    "main.41c4e9c7.css.map": "/empiv/static/css/main.41c4e9c7.css.map",
+    "main.4266d533.js.map": "/empiv/static/js/main.4266d533.js.map"
   },
   "entrypoints": [
-    "static/css/main.d60a42b3.css",
-    "static/js/main.28f41e69.js"
+    "static/css/main.41c4e9c7.css",
+    "static/js/main.4266d533.js"
   ]
 }
