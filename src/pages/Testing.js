@@ -45,6 +45,7 @@ export function Testing({styleAmperemeter = UserStyleAmperemeter[0], value = 0, 
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
+                    borderColor: 'black',
                     alignItems: 'center',
                     '& > *': {
                         m: 1,

@@ -70,17 +70,8 @@ function VolumetricResonator(props) {
             <h1>Исследование вынужденных колебаний в объемном резонаторе</h1>
             <div className={classes.flexContainer}>
                 <div className={classes.flexContainerItem}>
-                    <Generator setFunction={setFrequencyGenerator} value={frequencyGenerator} defaultValue={6517} titleLabel={"Частота (МГц)"}/>
-                    <div className={classes.sliderBox}>
-                        <Slider
-                            value={frequencyGenerator}
-                            onChange={(e) => {
-                                setFrequencyGenerator(e.target.value)
-                            }}
-                            min={6477}
-                            max={6557}
-                        />
-                    </div>
+                    <Generator setFunction={setFrequencyGenerator} value={frequencyGenerator} defaultValue={6517} titleLabel={"Частота (МГц)"} settings={1}/>
+
                 </div>
                 <div className={classes.flexContainerItem}>
                     <Ampermetr value={I} />

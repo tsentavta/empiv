@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from "../Block.module.sass";
-import {TextField} from "@mui/material";
+import {Slider, TextField} from "@mui/material";
 
-function Generator({title = "Генератор", titleLabel = "Частота (МГц)",defaultValue= 10000, value, settings, setFunction}) {
+function Generator({title = "Генератор", titleLabel = "Частота (МГц)",defaultValue= 10000, value, settings = 0, setFunction}) {
     return (
         <div>
             <div className={classes.flexContainerItem}>
@@ -21,6 +21,16 @@ function Generator({title = "Генератор", titleLabel = "Частота (
                         shrink: true,
                     }}
                 />
+                {settings ? <div>
+                    <Slider
+                        value={value}
+                        onChange={(e) => {
+                            setFunction(e.target.value)
+                        }}
+                        min={6477}
+                        max={6557}
+                    />
+                </div> : <></> }
             </div>
         </div>
 

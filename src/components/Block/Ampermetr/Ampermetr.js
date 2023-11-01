@@ -2,19 +2,21 @@ import React, {useState} from 'react';
 import classes from "../Block.module.sass";
 import {FormControlLabel, TextField} from "@mui/material";
 import {alpha, styled} from '@mui/material/styles';
-import {pink} from '@mui/material/colors';
+import {orange} from '@mui/material/colors';
 import Switch from '@mui/material/Switch';
 import {Testing} from "../../../pages/Testing";
+const colorOrange = orange[800]
 
-const PinkSwitch = styled(Switch)(({theme}) => ({
+
+const ColorSwitch = styled(Switch)(({theme}) => ({
     '& .MuiSwitch-switchBase.Mui-checked': {
-        color: pink[600],
+        color: colorOrange,
         '&:hover': {
-            backgroundColor: alpha(pink[600], theme.palette.action.hoverOpacity),
+            backgroundColor: alpha(colorOrange, theme.palette.action.hoverOpacity),
         },
     },
     '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
-        backgroundColor: pink[600],
+        backgroundColor: colorOrange,
     },
 }));
 
@@ -55,7 +57,7 @@ function Ampermetr({title = "Амперметр", titleLabel = "Микроамп
 
             {settings ? <FormControlLabel
                 control={
-                    <PinkSwitch {...label} onChange={handleChange} className={classes.PinkSwitch}/>
+                    <ColorSwitch {...label} onChange={handleChange}/>
                 }
                 label="Вид измерительного прибора"
             />: <></>}
