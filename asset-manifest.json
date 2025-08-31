@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/empiv/static/css/main.8b57f4e7.css",
-    "main.js": "/empiv/static/js/main.e4a8526a.js",
+    "main.css": "/empiv/static/css/main.e3a8c6a8.css",
+    "main.js": "/empiv/static/js/main.c6fbe5e9.js",
     "static/media/logo.ico": "/empiv/static/media/logo.013e17eccd349a0fa936.ico",
     "static/media/exponential_growth_520.jpg": "/empiv/static/media/exponential_growth_520.319714a1cec7e65b9021.jpg",
     "static/media/tabloAmper.jpg": "/empiv/static/media/tabloAmper.6025e422e6876fd44642.jpg",
@@ -9,13 +9,13 @@
     "static/media/muilogo.svg": "/empiv/static/media/muilogo.0e623bc8a69881fd55f6033fa2e1b666.svg",
     "static/media/github.svg": "/empiv/static/media/github.a05af899382bed1b7ebe42c360191597.svg",
     "index.html": "/empiv/index.html",
-    "static/media/Reactlogo.svg": "/empiv/static/media/Reactlogo.7bfcfea5384d92b8fdb9dd5e41f3d443.svg",
+    "static/media/Reactlogo.svg": "/empiv/static/media/Reactlogo.20e6d93adb5e8614a0723aadccf0fe43.svg",
     "static/media/upload_file.svg": "/empiv/static/media/upload_file.12fbd9509c1aa1c27edde8ebc3c57d02.svg",
-    "main.8b57f4e7.css.map": "/empiv/static/css/main.8b57f4e7.css.map",
-    "main.e4a8526a.js.map": "/empiv/static/js/main.e4a8526a.js.map"
+    "main.e3a8c6a8.css.map": "/empiv/static/css/main.e3a8c6a8.css.map",
+    "main.c6fbe5e9.js.map": "/empiv/static/js/main.c6fbe5e9.js.map"
   },
   "entrypoints": [
-    "static/css/main.8b57f4e7.css",
-    "static/js/main.e4a8526a.js"
+    "static/css/main.e3a8c6a8.css",
+    "static/js/main.c6fbe5e9.js"
   ]
 }
