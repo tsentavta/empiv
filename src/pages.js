@@ -43,6 +43,10 @@ const pages = [
         href: "Main",
         string: 'Главная'
     },
+    {
+        href: "Testing",
+        string: 'Testing'
+    },
 
 
 ];

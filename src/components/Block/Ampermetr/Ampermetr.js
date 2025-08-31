@@ -29,7 +29,6 @@ function Ampermetr({title = "Амперметр", titleLabel = "Микроамп
         setChecked(e.target.checked);
     };
 
-    const digital = {}
 
     let valueAmpermetr
     try {

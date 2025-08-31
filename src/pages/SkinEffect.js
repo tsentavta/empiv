@@ -31,7 +31,6 @@ export function SkinEffect() {
     const [empValue, setEmpValue] = useState(0) // вывод значения ЭМП
     const [sliderValue, setSliderValue] = useState(0) //для значения slider
     const [material, setMaterial] = useState(1) // выбор материала
-    const [constForMaterial, setConstForMaterial] = useState(1) // коэффициент материала
     const [probeDisplacement, setProbeDisplacement] = useState(0.1) // вывод значения смещение зонда в мм
     const [frequencyGen, setFrequencyGen] = useState(1000)
 

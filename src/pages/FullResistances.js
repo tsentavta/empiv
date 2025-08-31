@@ -4,6 +4,7 @@ import clsx from 'classnames';
 import classes from './FullResistances.module.sass';
 import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
 import XPosition from "../components/Block/XPosition/XPosition";
+import Plot from "../components/Plot/Plot";
 
 function ksvSignal(x,value) {
     const n = workload[value].value
@@ -35,13 +36,26 @@ const workload = [
 function FullResistances() {
     const [myWorkload,setMyWorkload] = useState(0)
     const [EMP, setEMP] = useState(0)
-  const [translateX, setTranslateX] = useState(0); // смещение зонда
-  const [sliderValue, setSliderValue] = useState(0); // для значения slider
+    const [translateX, setTranslateX] = useState(0); // смещение зонда
+    const [sliderValue, setSliderValue] = useState(0); // для значения slider
+    const [plotData, setPlotData] = useState(createPlotData())
+    const [lastFrequency, setLastFrequency] = useState(0)
+    const [plotPoints, setPlotPoints] = useState(100)
+    const [lastPlotPoints, setLastPlotPoints] = useState(100)
+
+    function createPlotData (load= myWorkload ) {
+
+        const dataPlot = new Array(100);
+        for (let i = 0; i <= 100; ++i) {
+            dataPlot[i] = ksvSignal(i, load)
+        }
+        return(dataPlot)
+    }
 
   useEffect(() => {
     setTranslateX(sliderValue * 4.16);
-      setEMP(ksvSignal(sliderValue,myWorkload))
-
+    setEMP(ksvSignal(sliderValue,myWorkload))
+      setPlotData(createPlotData(myWorkload))
   }, [sliderValue,myWorkload]);
 
   return (
@@ -74,6 +88,9 @@ function FullResistances() {
         <div className={classes.imgBox}>
             <div className={(classes.volnovodPS)}/>
             <div className={(classes.shup)} style={{ transform: `translateX(${translateX}px` }}/>
+            <div className={(classes.plot)}>
+                <Plot value={plotData}/>
+            </div>
         </div>
 
         <div className={classes.sliderBox}>

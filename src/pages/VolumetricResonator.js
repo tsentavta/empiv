@@ -7,6 +7,7 @@ import { Slider, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import Generator from "../components/Block/Generator/Generator";
 import Ampermetr from "../components/Block/Ampermetr/Ampermetr";
+import Plot from "../components/Plot/Plot";
 
 function calculateE(frequency, resonantFrequency, functionQualityFactor) {
     const fr = frequency*1000000
@@ -53,18 +54,59 @@ const marks = [
     },
 ];
 
+const m = 100
+const n = 0
+const p = 50
+const r = 1
+const s =0
+const w =0
+
+
+// Вычисление общего знаменателя
+const denominator = m**2 * p + s**2 * m + s * p**2 - s**2 * p - s * m**2 - p**2 * m;
+
+// Первое выражение
+const a = (n * p + m * w + r * s - w * p - s * n - r * m) / denominator;
+
+// Второе выражение
+const b = (m**2 * r + n * s**2 + p**2 * w - s**2 * r - m**2 * w - p**2 * n) / denominator;
+
+// Третье выражение
+const c = (m**2 * p * w + m * r * s**2 + n * s * p**2 - s**2 * p * n - s * r * m**2 - w * m * p**2) / denominator;
+
+// Четвертое выражение
+function parabola(x) {
+    return (a * x**2 + b * x + c)
+}
+
 function VolumetricResonator(props) {
-
-
     const [translateX, setTranslateX] = useState(0) // смещение зонда
     const [sliderValue, setSliderValue] = useState(0) //для значения slider
+    const [lastSliderValue, setLastSliderValue] = useState(0) //для значения slider
     const [sliderValueGenerator, setSliderValueGenerator] = useState(6517) //для значения slider
     const [frequencyGenerator, setFrequencyGenerator] = useState(6517)
     const [I, setI] = useState(0)
+    const [plotData, setPlotData] = useState([])
+
+    function createPlotData (frequency, resonantFrequency, functionQualityFactor) {
+
+        const dataPlot = new Array(100);
+        for (let i = 0; i <= 100; ++i) {
+            dataPlot[i] = parabola(i)*functionQualityFactor/1000*I
+        }
+        return(dataPlot)
+
+    }
 
     useEffect(() => {
         setI (calculateE(frequencyGenerator, 6517000000, marks[sliderValue].qualityFactor))
-    }, [sliderValue, frequencyGenerator])
+
+
+            setPlotData(createPlotData(frequencyGenerator, 6517000000, marks[sliderValue].qualityFactor))
+            setLastSliderValue(sliderValue)
+
+
+    }, [sliderValue, frequencyGenerator,])
     return (
         <>
             <h1>Исследование вынужденных колебаний в объемном резонаторе</h1>
@@ -83,6 +125,9 @@ function VolumetricResonator(props) {
                 <div className={classes.flexContainerItem}>
                     <div className={classes.imgBox}>
                         <div  className={classes.img}/>
+                        <div className={(classes.plot)}>
+                            <Plot value={plotData}/>
+                        </div>
                     </div>
 
                 </div>
