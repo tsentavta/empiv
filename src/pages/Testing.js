@@ -46,42 +46,7 @@ export function Testing({styleAmperemeter = UserStyleAmperemeter[0], value = 0, 
 
 
 
-        const data = {
-            labels: [1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3], // Скрываются настройками ниже
-            datasets: [
-                {
-                    label: 'Данные',
-                    data: [1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3],
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1,
-                },
-            ],
-        }
-        const options = {
-        plugins: {
-            legend: {
-                display: false, // Скрыть легенду
-            },
-            tooltip: {
-                enabled: false, // Отключить всплывающие подсказки
-            },
-        },
-        scales: {
-            x: {
-                display: false, // Скрыть ось X
-            },
-            y: {
-                display: false, // Скрыть ось Y
-            },
-        },
-        elements: {
-            point: {
-                radius: 0, // Скрыть точки на графике
-            },
-        },
-        responsive: true,
-            maintainAspectRatio: false,
-    }
+
     useEffect(() => {
         let degrees = value/scale//Math.acos(valueA/scale)
         if (degrees>=1) {
@@ -94,7 +59,7 @@ export function Testing({styleAmperemeter = UserStyleAmperemeter[0], value = 0, 
     }, [value, scale])
 
     return (
-        <div>
+
             <div>
 
                 <Box
@@ -132,12 +97,6 @@ export function Testing({styleAmperemeter = UserStyleAmperemeter[0], value = 0, 
                 </div>
             </div>
 
-            <div>
-                <div style={{ width: '400px', height: '200px' }}>
-                    <Line data={data} options={options} />
-                </div>
-            </div>
 
-        </div>
     );
 }
