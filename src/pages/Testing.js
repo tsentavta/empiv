@@ -6,7 +6,6 @@ import {useEffect, useState} from "react";
 import cx from "classnames";
 import XPosition from "../components/Block/XPosition/XPosition";
 import Box from "@mui/material/Box";
-import uPlot from "uplot";
 import { Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
