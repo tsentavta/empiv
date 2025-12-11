@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/empiv/static/css/main.e3a8c6a8.css",
-    "main.js": "/empiv/static/js/main.cc721076.js",
+    "main.js": "/empiv/static/js/main.21bb8a1a.js",
     "static/media/logo.ico": "/empiv/static/media/logo.013e17eccd349a0fa936.ico",
     "static/media/exponential_growth_520.jpg": "/empiv/static/media/exponential_growth_520.319714a1cec7e65b9021.jpg",
     "static/media/tabloAmper.jpg": "/empiv/static/media/tabloAmper.6025e422e6876fd44642.jpg",
@@ -12,10 +12,10 @@
     "static/media/Reactlogo.svg": "/empiv/static/media/Reactlogo.20e6d93adb5e8614a0723aadccf0fe43.svg",
     "static/media/upload_file.svg": "/empiv/static/media/upload_file.12fbd9509c1aa1c27edde8ebc3c57d02.svg",
     "main.e3a8c6a8.css.map": "/empiv/static/css/main.e3a8c6a8.css.map",
-    "main.cc721076.js.map": "/empiv/static/js/main.cc721076.js.map"
+    "main.21bb8a1a.js.map": "/empiv/static/js/main.21bb8a1a.js.map"
   },
   "entrypoints": [
     "static/css/main.e3a8c6a8.css",
-    "static/js/main.cc721076.js"
+    "static/js/main.21bb8a1a.js"
   ]
 }
