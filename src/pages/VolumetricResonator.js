@@ -24,7 +24,7 @@ function calculateE(frequency, resonantFrequency, functionQualityFactor) {
     const ans = Ef/E
     //
 
-    return (200*Math.sqrt(ans))//(random*111345*Math.sqrt(1 / ans))
+    return (functionQualityFactor/5.246*Math.sqrt(ans))//(random*111345*Math.sqrt(1 / ans))
 }
 const random = (max = 100) => {
     let x = Math.random(max);
@@ -88,21 +88,22 @@ function VolumetricResonator(props) {
     const [I, setI] = useState(0)
     const [plotData, setPlotData] = useState([])
 
-    function createPlotData (frequency, resonantFrequency, functionQualityFactor) {
+    function createPlotData (buff, frequency, resonantFrequency, functionQualityFactor) {
 
         const dataPlot = new Array(100);
         for (let i = 0; i <= 100; ++i) {
-            dataPlot[i] = parabola(i)*functionQualityFactor/1000*I
+            dataPlot[i] = parabola(i)*functionQualityFactor/1000*buff
         }
         return(dataPlot)
 
     }
 
     useEffect(() => {
-        setI (calculateE(frequencyGenerator, 6517000000, marks[sliderValue].qualityFactor))
+        const buff = calculateE(frequencyGenerator, 6517000000, marks[sliderValue].qualityFactor)
+        setI (buff)
 
 
-            setPlotData(createPlotData(frequencyGenerator, 6517000000, marks[sliderValue].qualityFactor))
+            setPlotData(createPlotData(buff, frequencyGenerator, 6517000000, marks[sliderValue].qualityFactor))
             setLastSliderValue(sliderValue)
 
 
